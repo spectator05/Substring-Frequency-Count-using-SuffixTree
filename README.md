@@ -1,8 +1,8 @@
 # Substring-Frequency-Count-using-SuffixTree
 
-- It takes multiple strings as input and puts them into the suffix tree. Then extract frequency of all substrings for multiple strings based on the frequencies of the suffix tree nodes.
+- It takes multiple strings as input and puts them into a suffix tree. Then extract frequency of all substrings for multiple strings based on the frequencies of the suffix tree nodes.
 
-- The output of this is equivalent to storing the frequencies by splitting the string into substrings of length 1 up to substrings of length n.
+- The output is equivalent to storing the frequencies by splitting the string into substrings of length 1 up to substrings of length n.
 
 - It is possible to count the frequency of only one substring per packet by storing the index of the most recent packet counted in the node.
 
