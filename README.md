@@ -35,7 +35,7 @@ for s in tqdm(strings):
     temp = set()
     for n in range(k, len(s)+1):
         for i in range(len(s) - n + 1):
-            temp.add(p[i:i+n])
+            temp.add(s[i:i+n])
     c.update(list(temp))
 ```
 
