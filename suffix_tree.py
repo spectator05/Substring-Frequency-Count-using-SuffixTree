@@ -13,11 +13,11 @@ class Node:
             self.recent_index = idx
 
 class SuffixTree:
-    self.current_len = 0
     def __init__(self, l):
+        self.current_len = 0
         self.nodes = [Node()]
         for input_data in tqdm(l, total=len(l)):
-            add(input_data)
+            self.add(input_data)
     def add(self, input_data):
         for i in range(len(input_data)-1, -1, -1):
             target = input_data[i:]
