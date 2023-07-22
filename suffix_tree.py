@@ -13,14 +13,18 @@ class Node:
             self.recent_index = idx
 
 class SuffixTree:
+    self.current_len = 0
     def __init__(self, l):
         self.nodes = [Node()]
-        for idx, str in tqdm(enumerate(l), total=len(l)):
-            for i in range(len(str)-1, -1, -1):
-                target = str[i:]
-                self.addSuffix(target, idx)
-
-    def addSuffix(self, suf, idx):
+        for input_data in tqdm(l, total=len(l)):
+            add(input_data)
+    def add(self, input_data):
+        for i in range(len(input_data)-1, -1, -1):
+            target = input_data[i:]
+            self._addSuffix(target)
+    def _addSuffix(self, suf):
+        idx = self.current_len
+        self.current_len += 1
         n = 0
         i = 0
         while i < len(suf):
