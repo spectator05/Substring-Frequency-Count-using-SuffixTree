@@ -77,14 +77,14 @@ class SuffixTree:
     def get_frequency(self, th=0, k=4) -> list:
         count_dict = dict()
         
-        def _find(n=0, pre="") -> list:
+        def _find(n=0, pre=()) -> list:
             if n in first_children:
                 bar.update(1)
             children = self.nodes[n].ch
             
             if self.nodes[n].count_value >= th:
                 for i in range(1, len(self.nodes[n].sub) + 1):
-                    substring = pre + self.nodes[n].sub[:i]
+                    substring = pre + tuple(self.nodes[n].sub[:i])
                     if substring not in count_dict:
                         if len(substring) >= k:
                             count_dict[substring] = self.nodes[n].count_value
@@ -94,7 +94,7 @@ class SuffixTree:
                         count_dict[substring] = self.nodes[n].count_value
                 
                 for c in children:
-                    _find(c, pre + self.nodes[n].sub)
+                    _find(c, pre + tuple(self.nodes[n].sub))
                     
         first_children = set(self.nodes[0].ch)
         bar = tqdm(total=len(first_children))
