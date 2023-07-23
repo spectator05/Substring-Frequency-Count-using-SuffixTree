@@ -2,9 +2,9 @@
 
 - It takes multiple strings as input and puts them into a suffix tree. Then extract frequency of all substrings for multiple strings based on the frequencies of the suffix tree nodes.
 
-- The output is equivalent to storing the frequencies by splitting the string into substrings of length 1 up to substrings of length n.
+- The output is equivalent to storing the frequencies by splitting the string into substrings of length 1 up to substrings of length n(see validation part).
 
-- It is possible to count the frequency of only one substring per packet by storing the index of the most recent packet counted in the node.
+- It is possible to count the frequency of only one substring per packet by storing the index of the most recent string counted in the node. (It can solve some problems related with duplicated substrings in a string like 'AAAAAAAA'
 
 You can set the length of the minimum substring to be extracted via the input parameter `k`.
 ```python
@@ -38,6 +38,32 @@ for s in tqdm(strings):
             temp.add(s[i:i+n])
     c.update(list(temp))
 ```
+
+### validation
+```python
+l = ['ABCDEFG', 'ASDCS', 'BCDEF', 'VBDFA', 'ADFVAD', 'ABDVADF', 'VCBDABC', 'AAAAA']
+k = 2
+
+d = dict()
+for s in l:
+    temp_set = set()
+    for kk in range(k, len(s)+1):
+        for i in range(0, len(s)-kk+1):
+            temp_set.add(s[i:i+kk])
+    for sub_s in temp_set:
+        if tuple(sub_s) not in d:
+            d[tuple(sub_s)] = 0
+        d[tuple(sub_s)] += 1
+        
+tree_d = SuffixTree(l).get_frequency(k=2, th=1)
+sorted(tree_d.items(), key=lambda x: x[0]) == sorted(d.items(), key=lambda x: x[0])
+```
+
+```python
+True
+```
+
+
 
 This code based on Manvi Saxena's ukkonen SuffixTree python code
 https://favtutor.com/blogs/ukkonen-algorithm-suffix-tree
