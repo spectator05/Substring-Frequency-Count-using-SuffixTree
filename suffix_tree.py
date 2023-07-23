@@ -22,9 +22,9 @@ class SuffixTree:
         for i in range(len(input_data)-1, -1, -1):
             target = input_data[i:]
             self._addSuffix(target)
+        self.current_len += 1
     def _addSuffix(self, suf):
         idx = self.current_len
-        self.current_len += 1
         n = 0
         i = 0
         while i < len(suf):
